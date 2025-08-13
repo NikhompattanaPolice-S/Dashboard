@@ -9,7 +9,7 @@
  */
 
 const SPREADSHEET_ID = '1cutw_oqvcJF2n6us0PDDtfRcDck5CY8oReKgu_mm2S4';
-const SHEET_NAME = 'ข้อมูล'; // ปรับให้ตรงกับชื่อแท็บ
+const SHEET_NAME = 'Sheet1'; // ปรับให้ตรงกับชื่อแท็บ
 const MAPS_API_KEY = 'AIzaSyDo6iytZ2FgH90VscgneUmne0z8CUnNfEA';
 
 /**
