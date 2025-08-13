@@ -38,6 +38,40 @@ local-data-dashboard/
 
 1. **โคลนและติดตั้ง** – ติดตั้ง dependencies ด้วย `npm install` (จำเป็นต้องเชื่อมต่ออินเทอร์เน็ตเพื่อดึงแพ็กเกจ) แล้วคัดลอกไฟล์ `.env.example` เป็น `.env` และกำหนดค่าตามที่ใช้จริง เช่น `VITE_SHEET_ID`, `VITE_SHEET_TAB`, `VITE_APP_SCRIPT_BASE_URL` และ `VITE_MAP_API_KEY` เป็นต้น
 2. **รันโหมดพัฒนา** – ใช้คำสั่ง `npm run dev` เพื่อสั่ง Vite ให้เปิดเซิร์ฟเวอร์ development จากนั้นเปิดเบราว์เซอร์ที่ `http://localhost:5173`
+
+## การ Build และ Deploy ไปยัง GitHub Pages
+
+1. **ตั้งค่า base ใน vite.config.ts**
+	 - เปิดไฟล์ `vite.config.ts` และเพิ่มหรือแก้ไข property `base` ให้เป็นชื่อ repo ของคุณ เช่น:
+		 ```ts
+		 export default defineConfig({
+			 base: '/Dashboard/', // เปลี่ยนเป็นชื่อ repo ของคุณ
+			 // ...existing config...
+		 });
+		 ```
+
+2. **ติดตั้ง gh-pages**
+	 - รันคำสั่ง:
+		 ```bash
+		 npm install --save-dev gh-pages
+		 ```
+
+3. **เพิ่ม scripts ใน package.json**
+	 - เพิ่มในส่วน scripts:
+		 ```json
+		 "predeploy": "npm run build",
+		 "deploy": "gh-pages -d dist"
+		 ```
+
+4. **Deploy**
+	 - รันคำสั่ง:
+		 ```bash
+		 npm run deploy
+		 ```
+	 - เว็บไซต์จะถูกเผยแพร่ที่ https://<username>.github.io/<repo>/
+
+5. **หมายเหตุ**
+	 - ถ้าใช้ custom domain หรือ subpath ให้ปรับ base ให้ตรงกับ path ที่ต้องการ
 3. **สร้างไฟล์ผลิต** – ใช้คำสั่ง `npm run build` เพื่อ build แอปและสร้างไฟล์สเตติกในโฟลเดอร์ `dist/`
 4. **ดีพลอยไป GitHub Pages** – เมื่อ push ไปยัง branch `main` GitHub Actions จะ build และ deploy อัตโนมัติไปที่ branch `gh-pages` โดยสามารถเข้าชมได้ที่ `https://<username>.github.io/<repository>`
 

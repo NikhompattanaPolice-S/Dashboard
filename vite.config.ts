@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
   // Load env file based on mode (development, production)
   const env = loadEnv(mode, process.cwd(), '');
   return {
+    base: '/Dashboard/', // เปลี่ยนเป็นชื่อ repo ของคุณถ้าไม่ใช่ Dashboard
     plugins: [react()],
     define: {
       // Make Vite env variables accessible through import.meta.env
